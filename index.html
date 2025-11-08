@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Collection Fleet Optimiser</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" defer></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header class="hero">
+        <h1>Waste Collection Fleet Optimiser</h1>
+        <p>Explore how different fleet assignments impact route duration and select the most time-efficient deployment.</p>
+    </header>
+    <main>
+        <section class="panel">
+            <h2>Scenario Inputs</h2>
+            <div class="input-grid">
+                <div class="card" id="waste-card">
+                    <h3>Waste Streams</h3>
+                    <div id="waste-inputs" class="stack"></div>
+                </div>
+                <div class="card" id="fleet-card">
+                    <h3>Fleets &amp; Trucks</h3>
+                    <div id="fleet-inputs" class="stack"></div>
+                </div>
+                <div class="card" id="parameter-card">
+                    <h3>Routing Parameters</h3>
+                    <label class="field">
+                        <span>Minutes per stop</span>
+                        <input id="stop-minutes" type="number" min="1" step="1" value="18">
+                    </label>
+                    <label class="field">
+                        <span>Max permutations to display</span>
+                        <input id="max-combos" type="number" min="1" max="20" step="1" value="6">
+                    </label>
+                    <div class="actions">
+                        <button id="run-btn" type="button">Run Optimisation</button>
+                        <button id="reset-btn" type="button" class="secondary">Reset to Defaults</button>
+                    </div>
+                    <p class="hint">Adjust any value to instantly recompute results.</p>
+                </div>
+            </div>
+        </section>
+        <section class="panel">
+            <h2>Highlights</h2>
+            <div id="summary-panel" class="summary"></div>
+        </section>
+        <section class="panel">
+            <h2>Fleet × Waste Completion Time (hours)</h2>
+            <div id="heatmap" class="chart"></div>
+        </section>
+        <section class="panel">
+            <h2>Fastest Assignment Breakdown</h2>
+            <div id="assignment-chart" class="chart"></div>
+        </section>
+        <section class="panel">
+            <h2>Detailed Outputs</h2>
+            <div id="details"></div>
+        </section>
+    </main>
+    <footer>
+        <p>Model assumes each truck completes full routes before redeployment and stops are allocated evenly up to vehicle capacity.</p>
+    </footer>
+</body>
+</html>
